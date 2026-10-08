@@ -129,6 +129,12 @@ async def resumen(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(texto)
 
 def main():
+    import asyncio
+    try:
+        asyncio.get_event_loop()
+    except RuntimeError:
+        asyncio.set_event_loop(asyncio.new_event_loop())
+
     init_db()
     app = Application.builder().token(TOKEN).build()
 
